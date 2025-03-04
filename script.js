@@ -41,6 +41,85 @@ function renderItems(items) {
       container.appendChild(div);
     });
   }
+let mode = 'light'
+  // Implement a light/dark mode toggle using CSS root variables.
+  // create
+  const toggleBackground = document.getElementById('btn-toggleBackground');
+  onclick = () => {
+    // document.documentElement.style.cssText = "--secondary-color"
+    if (mode === 'light') {
+      document.body.style.backgroundColor = "var(--primary-color)";
+      document.querySelector('header').style.backgroundColor = "var(--secondary-color)";
+      mode = 'dark'
+    } else {
+      document.body.style.backgroundColor = "var(--secondary-color)";
+      document.querySelector('header').style.backgroundColor = "var(--primary-color)";
+      mode = 'light'
+    }
+  }
+  // now I need it to toggle back to the original color
+
+  
+  
+  const root = document.documentElement
+
+  toggleButton.addEventListener('click', () => {
+    toggleButton.classList.toggle('secondary');
+    root.classList.toggle('green-mode');
+  })
+  
+
+
+// Add list section
+
+const dataSection = document.getElementById('data-section')
+const dataSectionHeader = dataSection.querySelector('h2')
+
+dataSectionHeader.textContent = 'Section 4: Shopping List'
+dataSectionHeader.className = 'shopping-list-header'
+
+const newForm = document.createElement('form')
+dataSection.appendChild(newForm)
+
+const listInputLabel = document.createElement('label')
+listInputLabel.htmlFor = 'shopping-list'
+listInputLabel.textContent = 'Add item:'
+newForm.appendChild(listInputLabel)
+
+const listInput = document.createElement('input')
+listInput.type = 'text'
+listInput.id = 'shopping-list'
+listInput.name = 'shopping-list'
+newForm.appendChild(listInput)
+
+const addItemButton = document.createElement('button')
+addItemButton.type = 'button'
+addItemButton.textContent = 'Add'
+newForm.appendChild(addItemButton)
+
+const clearItemButton = document.createElement('button')
+clearItemButton.type = 'button'
+clearItemButton.textContent = 'Clear'
+newForm.appendChild(clearItemButton)
+
+const listContainer = document.createElement('ul')
+dataSection.appendChild(listContainer)
+
+addItemButton.addEventListener('click', (event) => {
+  addToList(listInput.value)
+  listInput.value = ''
+})
+
+function addToList(item) {
+  listContainer.innerHTML += `<li>${item}</li>`
+}
+
+clearItemButton.addEventListener('click', (event) => {
+  listContainer.innerHTML = ''
+})
+
+
+
 
   document.addEventListener("DOMContentLoaded", () => {
     // Get or create #data-container
@@ -111,3 +190,7 @@ function renderItems(items) {
 */
 
 // Call the render function on page load or when needed
+
+
+renderItems(dataItems)
+
