@@ -42,6 +42,56 @@ function renderItems(items) {
     });
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get or create #data-container
+    let container = document.getElementById('data-container');
+    if (!container) {
+        container = document.createElement("div");
+        container.id = "data-container";
+        document.body.appendChild(container); // Append to body if not found
+    }
+
+    // Check if the elements exist, if not, create them
+    let quoteElement = document.getElementById("quote");
+    let authorElement = document.getElementById("author");
+
+    if (!quoteElement) {
+        quoteElement = document.createElement("div");
+        quoteElement.id = "quote";
+        container.appendChild(quoteElement);
+    }
+
+    if (!authorElement) {
+        authorElement = document.createElement("div");
+        authorElement.id = "author";
+        container.appendChild(authorElement);
+    }
+
+    // Define API URL
+    const api_url ="https://thequoteshub.com/api/";
+
+    async function getapi(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data);
+
+            // Update the existing elements
+            quoteElement.textContent = `"${data.text}"`;
+            authorElement.textContent = `- ${data.author}`;
+        } catch (error) {
+            console.error("Error fetching quote:", error);
+            quoteElement.textContent = "Failed to load quote. Please try again later.";
+        }
+    }
+
+    // Call the function
+    getapi(api_url);
+});
+
 /* IDEAS FOR ADDITIONAL INTERACTIONS
 
 1. Add functionality to highlight the navigation link of the current section as the user scrolls.
@@ -58,4 +108,3 @@ function renderItems(items) {
 */
 
 // Call the render function on page load or when needed
-renderItems(dataItems);
