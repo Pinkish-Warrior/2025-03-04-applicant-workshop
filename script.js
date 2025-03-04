@@ -60,6 +60,9 @@ function renderItems(items) {
         quoteElement.id = "quote";
         container.appendChild(quoteElement);
     }
+    
+    const lineBreak = document.createElement("br");
+    container.appendChild(lineBreak);
 
     if (!authorElement) {
         authorElement = document.createElement("div");
