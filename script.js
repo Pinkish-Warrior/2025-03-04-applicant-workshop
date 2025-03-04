@@ -41,6 +41,34 @@ function renderItems(items) {
       container.appendChild(div);
     });
   }
+let mode = 'light'
+  // Implement a light/dark mode toggle using CSS root variables.
+  // create
+  const toggleBackground = document.getElementById('btn-toggleBackground');
+  onclick = () => {
+    // document.documentElement.style.cssText = "--secondary-color"
+    if (mode === 'light') {
+      document.body.style.backgroundColor = "var(--primary-color)";
+      document.querySelector('header').style.backgroundColor = "var(--secondary-color)";
+      mode = 'dark'
+    } else {
+      document.body.style.backgroundColor = "var(--secondary-color)";
+      document.querySelector('header').style.backgroundColor = "var(--primary-color)";
+      mode = 'light'
+    }
+  }
+  // now I need it to toggle back to the original color
+
+  
+  
+  const root = document.documentElement
+
+  toggleButton.addEventListener('click', () => {
+    toggleButton.classList.toggle('secondary');
+    root.classList.toggle('green-mode');
+  })
+  
+
 
 // Add list section
 
@@ -109,4 +137,4 @@ clearItemButton.addEventListener('click', (event) => {
 */
 
 // Call the render function on page load or when needed
-renderItems(dataItems);
+renderItems(dataItems)
