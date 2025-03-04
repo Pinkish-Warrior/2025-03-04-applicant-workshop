@@ -1,4 +1,4 @@
-/* IDEAS FOR ADDITIONAL INTERACTIONS
+# IDEAS FOR ADDITIONAL INTERACTIONS
 
 1. Add functionality to highlight the navigation link of the current section as the user scrolls.
 2. Implement a light/dark mode toggle using CSS root variables.
